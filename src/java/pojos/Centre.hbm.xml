@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-jul-2017 14:07:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Centre" table="centre" catalog="fpdual" optimistic-lock="version">
+        <id name="idCentre" type="java.lang.Integer">
+            <column name="Id_centre" />
+            <generator class="identity" />
+        </id>
+        <property name="nom" type="string">
+            <column name="Nom" length="200" not-null="true" />
+        </property>
+        <property name="codi" type="string">
+            <column name="Codi" length="10" not-null="true" />
+        </property>
+        <property name="telefon" type="string">
+            <column name="Telefon" length="9" not-null="true" />
+        </property>
+        <property name="web" type="string">
+            <column name="Web" length="200" not-null="true" />
+        </property>
+        <set name="usuaris" table="usuari" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_centre" />
+            </key>
+            <one-to-many class="pojos.Usuari" />
+        </set>
+        <set name="alumnes" table="alumne" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_centre" />
+            </key>
+            <one-to-many class="pojos.Alumne" />
+        </set>
+    </class>
+</hibernate-mapping>

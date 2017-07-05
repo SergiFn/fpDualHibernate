@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-jul-2017 14:07:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Alumne" table="alumne" catalog="fpdual" optimistic-lock="version">
+        <id name="idUsuari" type="int">
+            <column name="id_usuari" />
+            <generator class="foreign">
+                <param name="property">usuari</param>
+            </generator>
+        </id>
+        <many-to-one name="centre" class="pojos.Centre" fetch="select">
+            <column name="id_centre" />
+        </many-to-one>
+        <many-to-one name="tutor" class="pojos.Tutor" fetch="select">
+            <column name="id_tutor" />
+        </many-to-one>
+        <one-to-one name="usuari" class="pojos.Usuari" constrained="true"></one-to-one>
+        <property name="dataInici" type="date">
+            <column name="data_inici" length="10" />
+        </property>
+        <property name="dataFi" type="date">
+            <column name="data_fi" length="10" />
+        </property>
+        <set name="registres" table="registre" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_alumne" not-null="true" />
+            </key>
+            <one-to-many class="pojos.Registre" />
+        </set>
+    </class>
+</hibernate-mapping>

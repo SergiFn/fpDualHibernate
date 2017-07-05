@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-jul-2017 14:07:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Registre" table="registre" catalog="fpdual" optimistic-lock="version">
+        <composite-id name="id" class="pojos.RegistreId">
+            <key-property name="idActivitat" type="int">
+                <column name="id_activitat" />
+            </key-property>
+            <key-property name="idAlumne" type="int">
+                <column name="id_alumne" />
+            </key-property>
+            <key-property name="data" type="date">
+                <column name="data" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="activitat" class="pojos.Activitat" update="false" insert="false" fetch="select">
+            <column name="id_activitat" not-null="true" />
+        </many-to-one>
+        <many-to-one name="alumne" class="pojos.Alumne" update="false" insert="false" fetch="select">
+            <column name="id_alumne" not-null="true" />
+        </many-to-one>
+        <property name="hores" type="int">
+            <column name="hores" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-jul-2017 14:07:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Usuari" table="usuari" catalog="fpdual" optimistic-lock="version">
+        <id name="idUsuari" type="java.lang.Integer">
+            <column name="id_usuari" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="centre" class="pojos.Centre" fetch="select">
+            <column name="id_centre" />
+        </many-to-one>
+        <property name="nif" type="string">
+            <column name="NIF" length="9" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="8" not-null="true" />
+        </property>
+        <property name="nom" type="string">
+            <column name="nom" length="200" not-null="true" />
+        </property>
+        <property name="primerCognom" type="string">
+            <column name="primer_cognom" length="200" not-null="true" />
+        </property>
+        <property name="segonCognom" type="string">
+            <column name="segon_cognom" length="200" />
+        </property>
+        <property name="dataAlta" type="date">
+            <column name="data_alta" length="10" not-null="true" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" length="200" not-null="true" />
+        </property>
+        <property name="permisos" type="int">
+            <column name="permisos" not-null="true" />
+        </property>
+        <one-to-one name="alumne" class="pojos.Alumne"></one-to-one>
+        <one-to-one name="tutor" class="pojos.Tutor"></one-to-one>
+    </class>
+</hibernate-mapping>
